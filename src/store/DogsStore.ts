@@ -25,7 +25,7 @@ export const useDogsStore = defineStore('dogsStore', () => {
         keys.value = []
     }
 
-    const addRemomeFavoriteStore = (obj: { breed: string; img: string; isFavorites: boolean; }) =>{
+    const addRemomeFavoriteStore = (obj: Dog) =>{
         dogsSort.value.map( (item) => {
             if(item.img == obj.img && item.isFavorites == false){
                 item.isFavorites = true
@@ -34,7 +34,7 @@ export const useDogsStore = defineStore('dogsStore', () => {
             else if(item.img == obj.img && item.isFavorites == true){
                 item.isFavorites = false
                 favoriteStore.value = []
-                dogsSort.value.forEach(function(entry: { breed: string; img: any; isFavorites: boolean; }) {
+                dogsSort.value.forEach(function(entry: Dog) {
                   if(entry.isFavorites == true){
                       favoriteStore.value.push(entry)
                   }

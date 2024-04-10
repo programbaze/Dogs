@@ -8,7 +8,9 @@
     </div>
 
     <div class="flex flex-wrap mt-2">
-      <span v-for="dog in listBogsBreed" :key="dog" :value="dog" @click="onChange(dog)" class="mr-1 mb-1 cursor-pointer relative grid select-none items-center whitespace-nowrap rounded-lg bg-blue-500 hover:bg-blue-700 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white">{{ dog }}</span>
+      <span v-for="dog in listBogsBreed" :key="dog" :value="dog" @click="onChange(dog)" class="mr-1 mb-1 cursor-pointer relative grid select-none items-center whitespace-nowrap rounded-lg bg-blue-500 hover:bg-blue-700 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white">
+        {{ dog }}
+      </span>
     </div>
     <DogsList
         :dogs="dogs"

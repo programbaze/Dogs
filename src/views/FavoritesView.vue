@@ -16,12 +16,6 @@ import {computed, defineComponent} from 'vue';
 import DogsList from "../components/DogsList.vue";
 import {useDogsStore} from "@/store/DogsStore";
 
-interface Dog {
-  breed: string;
-  img: any;
-  isFavorites: boolean;
-}
-
 export default defineComponent({
   name: 'HomeView',
   components: {

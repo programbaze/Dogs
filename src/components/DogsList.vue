@@ -12,10 +12,8 @@
         <div class="mt-4 flex justify-between">
           <div>
             <h3 class="text-sm text-gray-700">
-              <a href="#">
                 <span aria-hidden="true" class="absolute inset-0"></span>
                 Порода:
-              </a>
             </h3>
           </div>
           <p class="text-sm font-medium text-gray-900">{{dog.breed}}</p>
@@ -46,7 +44,7 @@ export default defineComponent({
       return breed
     })
 
-    const addRemomeFavorite = (obj: { breed: string; img: string; isFavorites: boolean; }) => {
+    const addRemomeFavorite = (obj: Dog) => {
       const dogsStore = useDogsStore();
       dogsStore.addRemomeFavoriteStore(obj)
     }
