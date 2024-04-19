@@ -1,7 +1,8 @@
 import {defineStore} from "pinia";
 import { ref } from 'vue';
+import { useLocalStorage } from "@vueuse/core"
 import Dog from "@/types/Dog";
-export const useDogsStore = defineStore('dogsStore', () => {
+export const useDogsStore = defineStore('dogsStore',  () => {
 
     const dogsSort = ref<Dog[]>([])
     const keys = ref<Dog[]>([])
@@ -44,6 +45,7 @@ export const useDogsStore = defineStore('dogsStore', () => {
     }
 
     return {
-        getDogs, dogsSort, delDogs, addRemomeFavoriteStore, favoriteStore
+        getDogs, delDogs, addRemomeFavoriteStore, favoriteStore: useLocalStorage('favoriteStore', favoriteStore), dogsSort: useLocalStorage('dogsSort', dogsSort),
     }
-})
+}
+)

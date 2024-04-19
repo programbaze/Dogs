@@ -12,18 +12,20 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
+import {computed, defineComponent, ref} from 'vue';
 import DogsList from "../components/DogsList.vue";
 import {useDogsStore} from "@/store/DogsStore";
+import {useDogsBreedStore} from "@/store/DogsBreedStore";
 
 export default defineComponent({
-  name: 'HomeView',
+  name: 'FavoritesView',
   components: {
     DogsList
   },
   setup(){
     const dogsStore = useDogsStore();
     const dogs = computed(() => dogsStore.favoriteStore)
+
     return { dogs}
   }
 });
