@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref} from 'vue';
+import {computed, defineComponent} from 'vue';
 import DogsList from "../components/DogsList.vue";
 import {useDogsStore} from "@/store/DogsStore";
 import {useDogsBreedStore} from "@/store/DogsBreedStore";

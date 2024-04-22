@@ -7,6 +7,7 @@ export const useDogsStore = defineStore('dogsStore',  () => {
     const dogsSort = ref<Dog[]>([])
     const keys = ref<Dog[]>([])
     const favoriteStore = ref<Dog[]>([])
+    const favoriеTempStore = ref<Dog[]>([])
     const getDogs = async (url: string) => {
         const res = await fetch(url);
         const data = await res.json();
@@ -26,26 +27,44 @@ export const useDogsStore = defineStore('dogsStore',  () => {
         keys.value = []
     }
 
-    const addRemomeFavoriteStore = (obj: Dog) =>{
+    const addFavoriteStore = (obj: Dog) =>{
         dogsSort.value.map( (item) => {
             if(item.img == obj.img && item.isFavorites == false){
                 item.isFavorites = true
-                favoriteStore.value.push(item)
-            }
-            else if(item.img == obj.img && item.isFavorites == true){
-                item.isFavorites = false
+                favoriеTempStore.value.push(item)
                 favoriteStore.value = []
-                dogsSort.value.forEach(function(entry: Dog) {
-                  if(entry.isFavorites == true){
-                      favoriteStore.value.push(entry)
-                  }
+                favoriеTempStore.value.forEach(function(entry: Dog) {
+                    if(entry.isFavorites == true){
+                        favoriteStore.value.push(entry)
+                    }
                 });
             }
         })
     }
 
+    const delFavoriteStore = (obj: Dog) =>{
+        favoriеTempStore.value.map( (item) => {
+            if(item.img == obj.img){
+                item.isFavorites = false
+                favoriteStore.value = []
+                favoriеTempStore.value.forEach(function(entry: Dog) {
+                    if(entry.isFavorites == true){
+                        favoriteStore.value.push(entry)
+                    }
+                });
+            }
+        })
+        dogsSort.value.map( (item) => {
+            if(item.img == obj.img && item.isFavorites == true){
+                item.isFavorites = false
+                favoriеTempStore.value.push(item)
+            }
+        })
+
+    }
+
     return {
-        getDogs, delDogs, addRemomeFavoriteStore, favoriteStore: useLocalStorage('favoriteStore', favoriteStore), dogsSort: useLocalStorage('dogsSort', dogsSort),
+        getDogs, delDogs, addFavoriteStore, delFavoriteStore,  favoriteStore: useLocalStorage('favoriteStore', favoriteStore), dogsSort: useLocalStorage('dogsSort', dogsSort),
     }
 }
 )

@@ -32,7 +32,6 @@ export default defineComponent({
     const routeId =  route.params.id
     const dogsStore = useDogsStore();
     const dogs = computed(() => dogsStore.dogsSort)
-
     dogsStore.delDogs()
     dogsStore.getDogs('https://dog.ceo/api/breeds/image/random/20')
 

@@ -1,7 +1,7 @@
 <template>
     <div class="mt-8 grid grid-cols-1 gap-12 gap-x-24 md:grid-cols-2 xl:grid-cols-4">
 
-      <div class="group relative card-fav" v-for="dog in sortDogs" :key="dog.img" @click="addRemomeFavorite(dog)">
+      <div class="group relative card-fav" v-for="dog in sortDogs" :key="dog.img" @click="dog.isFavorites==false ? addFavorite(dog) : delFavorite(dog)">
         <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
           <img :src="dog.img" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
         </div>
@@ -39,17 +39,24 @@ export default defineComponent({
   },
   setup(props){
 
+    const dogsStore = useDogsStore();
+
     const sortDogs = computed(() => {
       let breed = props.dogs;
       return breed
     })
 
-    const addRemomeFavorite = (obj: Dog) => {
-      const dogsStore = useDogsStore();
-      dogsStore.addRemomeFavoriteStore(obj)
+    const addFavorite = (obj: Dog) => {
+      console.log(1)
+      dogsStore.addFavoriteStore(obj)
     }
 
-    return {sortDogs, addRemomeFavorite}
+    const delFavorite = (obj: Dog) => {
+      console.log(2)
+      dogsStore.delFavoriteStore(obj)
+    }
+
+    return {sortDogs, addFavorite, delFavorite}
   }
 });
 </script>

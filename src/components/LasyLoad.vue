@@ -19,11 +19,9 @@ export default defineComponent({
   setup(props){
       const moreDogs = () => {
         if(props.routeId && props.routeName == 'breed'){
-          console.log('Условие breed')
           useDogsStore().getDogs('https://dog.ceo/api/breed/' + props.routeId + '/images/random/20');
         }
         else if ( props.routeName == 'home') {
-          console.log('Условие home')
           useDogsStore().getDogs('https://dog.ceo/api/breeds/image/random/20')
         }
 
